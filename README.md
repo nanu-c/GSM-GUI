@@ -1,30 +1,29 @@
-GSM-GUI
-=======
-This is a front end GUI for OSMO Network in a Box.  It uses node.js, socket.io to create an application that can turn on the 3 parts of OsmoNITB.  
-It is a beta, and still not fully featured.  
+# gsm-gui
 
-GUI can turn on Osmo-BSC, OsmoBTS, OsmoNITB.  
-To install Osmocom Suite see: http://openbsc.osmocom.org/trac/wiki/network_from_scratch
+## Project setup
+```
+npm install
+```
 
-Dependencies: 
-- Ubuntu 12.04
+### Compiles and hot-reloads for development
+```
+npm run serve
+```
 
-- Node.js - I used https://rtcamp.com/tutorials/nodejs/node-js-npm-install-ubuntu/
-  For tutorials on latest node.js & npm installation on Ubuntu 12.04
+### Compiles and minifies for production
+```
+npm run build
+```
 
-- socket.io
+### Run your tests
+```
+npm run test
+```
 
-- Osmobsc
-- Osmo-NITB
-- 
+### Lints and fixes files
+```
+npm run lint
+```
 
-1. Install node.js in directory you will be using
-2. Intall socket.io
-3. Place files github files in same directory. 
-4. run index.js script. 
-5. In browser goto localhost:3000
-6. you should see Network GUI. 
-
---------------
-This is a beta of the Network in a Box GUI. 
-
+### Customize configuration
+See [Configuration Reference](https://cli.vuejs.org/config/).

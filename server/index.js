@@ -1,13 +1,22 @@
 //run socket.io
 var app = require('express')();
+var cors = require('cors');
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
+var db = require('./db/db.js');
+
 //run shell script
 var sys = require('sys')
 var exec = require('child_process').exec;
+// var a = db.getSubscribers();
+app.use(cors())
 
-app.get('/', function(req, res){
-  res.sendfile('index.html');
+app.get('/subscribers', function(req, res){
+  db.getSubscribers().then((result) => {
+    console.log(result);
+    res.send(result);
+  });
+  // res.sendFile('./index.html');
 });
 
 
@@ -51,7 +60,7 @@ io.on('connection', function(socket){
 //BSC shell script
   function puts(error, stdout, stderr) {sys.puts(stdout)}
     exec("./TurnOnBSC.sh", puts);
-  }); 
+  });
 });
 
 
