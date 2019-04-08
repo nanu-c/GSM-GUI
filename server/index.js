@@ -18,8 +18,20 @@ app.get('/subscribers', function(req, res){
   });
   // res.sendFile('./index.html');
 });
-
-
+app.get('/subscribers', function(req, res){
+  db.getSubscribers().then((result) => {
+    console.log(result);
+    res.send(result);
+  });
+  // res.sendFile('./index.html');
+});
+app.put('/subscribers/:id/activate', (req, res) => {
+  // console.log(req.params.id);
+  db.activateSubscriber(req.params.id).then((result) => {
+    console.log(result);
+    res.send(result);
+  });
+})
 io.on('connection', function(socket){
 
 //Mesage

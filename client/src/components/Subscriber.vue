@@ -5,7 +5,7 @@
       stacked="md"
       :fields="fields" :items="subscribers">
       <template slot="actions" slot-scope="row">
-        <b-button size="sm" @click="" class="mr-1">
+        <b-button size="sm" @click="activate(row)" class="mr-1">
           activate
         </b-button>
         <b-button size="sm" @click="" class="mr-1">
@@ -42,6 +42,12 @@ export default {
     async getSubscribers () {
       const response = await SubscribersService.fetchSubscribers()
       this.subscribers = response.data
+    },
+    async activate(id){
+      console.log(id.item.id)
+      const response = await SubscribersService.activateSubscriber(id.item.id)
+      console.log(response.data)
+      this.getSubscribers()
     }
   }
 
