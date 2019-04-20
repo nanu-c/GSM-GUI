@@ -1,6 +1,21 @@
 <template>
-  <div class="subscriber">
+  <div class="subscriber container">
     <h1>Subscriber</h1>
+    <div class="row">
+      <div class="col-lg-4">
+        <span>Sms to send:</span>
+        <br />
+        <textarea v-model="message" placeholder="add multiple lines"></textarea>
+      </div>
+      <div class="col-lg-4">
+        <p style="white-space: pre-line;">{{ message }}</p>
+      </div>
+      <div class="col-lg-4">
+        <b-button size="sm" @click="sendtoAllSms(subscribers, message)" class="mr-1">
+          send sms to all subscribers
+        </b-button>
+      </div>
+    </div>
     <b-table       show-empty
       stacked="md"
       :fields="fields" :items="subscribers">
@@ -8,7 +23,7 @@
         <b-button size="sm" @click="activate(row)" class="mr-1">
           activate
         </b-button>
-        <b-button size="sm" @click="" class="mr-1">
+        <b-button size="sm" @click="sendSms(row.item.id, message)" class="mr-1">
           send sms
         </b-button>
       </template>
@@ -26,6 +41,7 @@ export default {
   name: 'Subscriber',
   data () {
     return {
+      message:"",
       subscribers: [],
       fields: [
         { key: 'id', label: 'id', sortable: true, sortDirection: 'desc' },
@@ -37,17 +53,38 @@ export default {
   },
   mounted () {
     this.getSubscribers()
+    this.setMessage()
   },
   methods: {
     async getSubscribers () {
       const response = await SubscribersService.fetchSubscribers()
       this.subscribers = response.data
     },
+    setMessage(){
+
+      this.message = localStorage.getItem("message");
+    },
     async activate(id){
-      console.log(id.item.id)
+      console.log()
       const response = await SubscribersService.activateSubscriber(id.item.id)
       console.log(response.data)
       this.getSubscribers()
+    },
+    async sendSms(id,message){
+      localStorage.setItem("message", message)
+      const response = await SubscribersService.sendSms(id, message)
+      this.getSubscribers()
+    },
+    async sendtoAllSms(subscribers, message ){
+      if (message=="")alert("Message could not be empty")
+      else {
+        localStorage.setItem("message", message)
+        var that = this;
+        subscribers.forEach(function(s){
+          that.sendSms(s.id, message)
+        });
+      }
+
     }
   }
 

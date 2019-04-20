@@ -1,0 +1,2 @@
+[1;36m<0005> bsc_init.c:551 Failed to parse the config file: 'openbsc.cfg'
+[0;mReading config failed. Exiting.

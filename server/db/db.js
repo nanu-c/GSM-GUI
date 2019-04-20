@@ -5,7 +5,7 @@ function getSubscribers(){
     if (err) {
       console.error(err.message);
     }
-    console.log('Connected to the hlr database.');
+    // console.log('Connected to the hlr database.');
   });
     return new Promise((resolve, reject) => {
       db.all(`SELECT id as id,
@@ -26,7 +26,7 @@ function activateSubscriber(id){
     if (err) {
       console.error(err.message);
     }
-    console.log('Connected to the hlr database.');
+    // console.log('Connected to the hlr database.');
   });
     return new Promise((resolve, reject) => {
         let data = [id];

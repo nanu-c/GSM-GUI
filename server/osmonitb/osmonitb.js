@@ -1,13 +1,15 @@
-const telnet = require('telnet-client');
-const server = new telnet();
+const teletype = require('teletype')
 
-// connect to server
-server.connect({
-    host: "127.0.0.1",
-    port: 4242
-});
-var text = "test123";
-function sendSms(){
-  server.write("subscriber id 1 sms sender id 1 send " + text);
+// osmonitbTelnet.exec("subscriber id "+id+" sms sender id 1 send blub" + text)
+
+function sendSms(id, text){
+  const client = teletype('localhost',4242)
+  client.exec("subscriber id "+id+" sms sender id 1 send "+text)
+    .then(response => {
+      client.close();
+    })
+    .catch(function(error) {
+      console.log(error);
+    })
 }
-modules.export.sendSms = sendSms;
+module.exports.sendSms=sendSms;

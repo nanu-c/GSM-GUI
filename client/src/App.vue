@@ -1,20 +1,22 @@
 <template>
   <div id="app" class="container">
-    <!-- <img alt="Vue logo" src="./assets/logo.png"> -->
     <Subscriber />
-    <!-- <HelloWorld msg="Welcome to Your Vue.js App"/> -->
+    <MccMnc />
+    <Log />
   </div>
 </template>
 
 <script>
-// import HelloWorld from '@/components/HelloWorld.vue'
 import Subscriber from '@/components/Subscriber.vue'
+import Log from '@/components/Log.vue'
+import MccMnc from '@/components/MccMnc.vue'
 
 export default {
   name: 'app',
   components: {
-    // HelloWorld,
-    Subscriber
+    Log,
+    Subscriber,
+    MccMnc
   }
 }
 </script>
@@ -24,7 +26,6 @@ export default {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
   color: #2c3e50;
   margin-top: 60px;
 }
